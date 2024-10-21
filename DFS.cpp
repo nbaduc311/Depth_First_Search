@@ -56,6 +56,11 @@ int check(int x, int y, list *visit) // kiểm tra xem ô đã được thăm ch
     return 1;
 }
 static int direct = 1;
+int check_goal(int x, int y) // kiểm tra xem ô đã được thăm chưa
+{
+    if ((x == 7 && y == 7) || (x == 7 && y == 8) || (x == 8 && y == 7) || (x == 8 && y == 8)) return 1;
+    return 0;
+}
 void logList(const list* lst, const std::string& listName) {
     std::string logMessage = listName + ": ";
     while (lst != nullptr) {
@@ -374,7 +379,12 @@ void BT(list *&_path,list *_visit,int *x, int *y) // hàm đệ quy backtracking
 
 }
 void DFS(list *&_path, list *&_visit, int *x, int *y) // hàm đệ quy DFS
-{
+{   
+    if(check_goal(*x,*y)) //kiểm tra xem đã đến đích chưa
+    {
+        log("Goal reached!");
+        return;
+    }
     addlist(_path, *x, *y); // thêm vào lộ trình
     addlist(_visit, *x, *y); //thêm vào danh sách đã thăm
     logList(_path, "Path");
