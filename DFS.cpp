@@ -497,7 +497,7 @@ void DFS(list *&_path, list *&_visit, int *x, int *y) // hàm đệ quy DFS
         }
         if (!API::wallRight())
         {
-            if (check((*x) + 1, (*y), _visit))
+            if (check((*x) - 1, (*y), _visit))
             {
                 API::turnRight();
                 direct = 4;
